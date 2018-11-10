@@ -1,0 +1,132 @@
+// dzn Common Functions (remove if not using it)
+#include "dzn_commonFunctions\dzn_commonFunctions.hpp"
+#include "dzn_commonFunctions\ui\baseDialogs.hpp"
+#include "dzn_commonFunctions\ui\copyPasteDialog.hpp"
+#include "dzn_commonFunctions\ui\dynamicDialog.hpp"
+
+// Debriefings
+#include "dzn_tSFramework\Modules\MissionConditions\Endings.hpp"
+
+enableDebugConsole = 1;
+disabledAI = 1;
+respawn = 3;
+respawnDelay = 9999999; 
+
+class Params
+{   
+	class par_opfor_vehicleClass1
+	{
+	    title = "OPFOR Техника #1";
+	    values[] = {0,1,2,3};
+	    default = 3;
+	    texts[] = {"ГАЗ-233014 Тигр (ПК/АГС)","БТР-80 (КПВТ)", "БТР-80А (2А72)", "БМП-2К (2А42)"};
+	};
+	class par_opfor_vehicleClass2
+	{
+	    title = "OPFOR Техника #2";
+	    values[] = {0,1,2,3};
+	    default = 0;
+	    texts[] = {"ГАЗ-233014 Тигр (ПК/АГС)","БТР-80 (КПВТ)", "БТР-80А (2А72)", "БМП-2К (2А42)"};
+	};
+	
+	class par_env_delimeter
+	{
+		title = "---- Время и погода ---------"; 
+		values[] = {0};
+		texts[] = {""};
+	};
+	class par_daytime
+	{
+	    title = "Время суток";
+	    values[] = {0,1,2,3};
+	    default = 0;
+	    texts[] = {"День","Ночь", "Утро","Случайно"};
+	};
+	class par_weather
+	{
+	    title = "Погода";
+	    values[] = {0,1,2,3,4,5};       
+	    texts[] = {
+		"Случайно"
+		,"Ясно"
+		,"Облачно"
+		,"Пасмурно"
+		,"Дождь"
+		,"Гроза"
+	    };
+	    default = 0;
+	};
+	class dzn_brv_enabled
+	{
+		title = "tS AAR Logging";
+		values[] = {0,1};
+		texts[] = {"Disabled","Enabled"};
+		default = 1;
+	};
+	
+		class par_dynai_delimeter
+	{
+		title = "---- dzn DynAI Settings ---------"; 
+		values[] = {0};
+		texts[] = {""};
+	};
+	class par_dynai_enableGroupResponse
+	{
+		title = "     Group Response system";
+		values[] = {0,1};
+		default = 1;
+		texts[] = {
+			"Disabled"
+			, "Enabled"
+		};
+	};
+	class par_dynai_amountMultiplier
+	{
+		title = "     Group Amount Multiplier";
+		values[] = {1,2,3,4,5,6,7,8,9,10};
+		default = 4;
+		texts[] = {
+			"x0.25"
+			,"x0.5"
+			,"x0.75"
+			,"x1"
+			,"x1.25"
+			,"x1.5"
+			,"x1.75"
+			,"x2"
+			,"Randomize (x1...1.5)"
+			,"Randomize (x1...2)"
+		};
+	};
+	class par_dynai_overrideSkill
+	{
+		title = "     Override Skill";
+		values[] = {0,1,2};
+		default = 0;
+		texts[] = {
+			"No"
+			, "General"
+			, "Complex"
+		};
+	};
+	class par_dynai_skillGeneral
+	{
+		title = "          Skill: General (%)";
+		values[] = {60,65,70,75,80,85,90,95,100};
+		default = 95;
+	};
+	class par_dynai_skillAccuracy
+	{
+		title = "          Skill (Complex): Accuracy (%)";
+		values[] = {40,45,50,55,60,65,70,75,80,85,90,95,100};
+		default = 80;
+	};
+	class par_dynai_skillAimSpeed
+	{
+		title = "          Skill (Complex): Aiming Speed (%)";
+		values[] = {40,45,50,55,60,65,70,75,80,85,90,95,100};
+		default = 90;
+	};
+};
+
+
