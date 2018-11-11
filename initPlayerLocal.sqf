@@ -4,6 +4,11 @@
 if (side player == west) then {
 	deleteMarkerLocal "respawn_east";	
 	allMapMarkers apply { if (["mrk_o", _x] call BIS_fnc_inString) then { deleteMarkerLocal _x; } };
+	
+	/*
+	 *	JDAM and AAA 
+	 */
+	#include "Scripts\client_JDAMSupport.sqf"
 };
 
 if (side player == east) then {

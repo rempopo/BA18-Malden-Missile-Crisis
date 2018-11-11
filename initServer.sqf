@@ -79,6 +79,12 @@ deleteVehicle StaticWeaponsLogic;
 
 
 /*
+ *	JDAM and AAA 
+ */
+ 
+#include "Scripts\server_JDAMSupport.sqf"
+
+/*
  *	BLUFOR Detection
  */
-#include "server_BluforDetection.sqf"
+#include "Scripts\server_BluforDetection.sqf"

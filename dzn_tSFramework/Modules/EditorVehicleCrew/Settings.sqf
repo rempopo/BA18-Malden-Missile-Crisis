@@ -35,7 +35,7 @@ CREW_CONFIG_TABLE
 		Default presets
 	*/
 	["OPFOR GNR"		,[["gunner"], east, tSF_EVC_OPFOR_CrewSkill, tSF_EVC_OPFOR_CrewKit, tSF_EVC_OPFOR_HoldType]]
-	, ["OPFOR AAA"		,[["gunner"], east, tSF_EVC_OPFOR_CrewSkill, tSF_EVC_OPFOR_CrewKit, "hold"]]
+	, ["OPFOR AAA"		,[["gunner"], east, tSF_EVC_OPFOR_CrewSkill, tSF_EVC_OPFOR_CrewKit]]
 	
 CREW_CONFIG_TABLE_END
 

@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=534;
+		nextID=541;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=53;
+		nextID=86;
 	};
 	class Camera
 	{
-		pos[]={9645.002,237.96175,4137.9795};
-		dir[]={-0.16249925,-0.83169597,0.53101099};
-		up[]={-0.24337803,0.55520737,0.79530549};
-		aside[]={0.95627433,3.8440339e-007,0.29263723};
+		pos[]={9626.6621,171.29271,4305.3848};
+		dir[]={-0.092045687,-0.45034873,-0.88818538};
+		up[]={-0.046427865,0.89283437,-0.44798395};
+		aside[]={-0.9947589,-5.0514609e-007,0.10309019};
 	};
 };
 binarizationWanted=0;
@@ -80,17 +80,19 @@ addons[]=
 	"rhs_c_troops",
 	"A3_Modules_F",
 	"rhs_c_cars",
-	"rhs_c_trucks",
 	"A3_Modules_F_Curator_Misc",
 	"A3_Structures_F_System",
 	"A3_Modules_F_Curator_Curator",
-	"A3_Ui_F"
+	"A3_Ui_F",
+	"rhs_c_trucks",
+	"rhs_c_a2port_armor",
+	"A3_Static_F_Sams_Radar_System_02"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=30;
+		items=32;
 		class Item0
 		{
 			className="A3_Structures_F_Mil";
@@ -282,22 +284,36 @@ class AddonsMetaData
 		};
 		class Item27
 		{
-			className="rhs_c_trucks";
-			name="GAZ-66";
-			author="Red Hammer Studios";
-			url="http://www.rhsmods.org/";
-		};
-		class Item28
-		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item29
+		class Item28
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item29
+		{
+			className="rhs_c_trucks";
+			name="GAZ-66";
+			author="Red Hammer Studios";
+			url="http://www.rhsmods.org/";
+		};
+		class Item30
+		{
+			className="rhs_c_a2port_armor";
+			name="A2 ported armor";
+			author="Red Hammer Studios";
+			url="http://www.rhsmods.org/";
+		};
+		class Item31
+		{
+			className="A3_Static_F_Sams";
+			name="Arma 3 Sams - Turrets";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -527,7 +543,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=28;
+		items=27;
 		class Item0
 		{
 			dataType="Layer";
@@ -6631,55 +6647,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9706.8359,40.501389,3963.0034};
-				angles[]={0,1.5480865,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-			};
-			id=383;
-			type="rhs_gaz66_zu23_vmf";
-		};
-		class Item13
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={9778.0586,48.614887,3862.3423};
-				angles[]={6.1686583,0,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-			};
-			id=384;
-			type="RHS_ZU23_VMF";
-		};
-		class Item14
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={9464.627,60.528706,3997.5222};
-				angles[]={0.075854406,0,6.2599902};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-			};
-			id=385;
-			type="RHS_ZU23_VMF";
-			atlOffset=-0.020053864;
-		};
-		class Item15
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={9785.0098,47.949463,3896.0413};
 			};
 			side="Empty";
@@ -6690,7 +6657,7 @@ class Mission
 			type="rhs_Igla_AA_pod_vmf";
 			atlOffset=3.5642815;
 		};
-		class Item16
+		class Item13
 		{
 			dataType="Layer";
 			name="DynAI Layer";
@@ -7145,7 +7112,7 @@ class Mission
 			id=403;
 			atlOffset=-2.8985119;
 		};
-		class Item17
+		class Item14
 		{
 			dataType="Layer";
 			name="3DEN Tools Layer";
@@ -7231,7 +7198,7 @@ class Mission
 			id=426;
 			atlOffset=10.407871;
 		};
-		class Item18
+		class Item15
 		{
 			dataType="Group";
 			side="East";
@@ -7295,7 +7262,7 @@ class Mission
 			};
 			id=429;
 		};
-		class Item19
+		class Item16
 		{
 			dataType="Group";
 			side="East";
@@ -7401,7 +7368,7 @@ class Mission
 			id=438;
 			atlOffset=2.3841858e-006;
 		};
-		class Item20
+		class Item17
 		{
 			dataType="Object";
 			class PositionInfo
@@ -7417,7 +7384,7 @@ class Mission
 			id=441;
 			type="Land_ClutterCutter_medium_F";
 		};
-		class Item21
+		class Item18
 		{
 			dataType="Group";
 			side="East";
@@ -7647,7 +7614,7 @@ class Mission
 			id=447;
 			atlOffset=0.18500042;
 		};
-		class Item22
+		class Item19
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -7659,7 +7626,7 @@ class Mission
 			type="Logic";
 			atlOffset=8.6503601;
 		};
-		class Item23
+		class Item20
 		{
 			dataType="Trigger";
 			position[]={12131.667,0,3798.3438};
@@ -7674,7 +7641,7 @@ class Mission
 			type="EmptyDetectorAreaR250";
 			atlOffset=26.549908;
 		};
-		class Item24
+		class Item21
 		{
 			dataType="Layer";
 			name="tSF Layer";
@@ -7777,7 +7744,7 @@ class Mission
 			};
 			id=495;
 		};
-		class Item25
+		class Item22
 		{
 			dataType="Layer";
 			name="BLUFOR Markers";
@@ -7967,7 +7934,7 @@ class Mission
 			id=497;
 			atlOffset=6.8435025;
 		};
-		class Item26
+		class Item23
 		{
 			dataType="Layer";
 			name="OPFOR Markers";
@@ -8109,32 +8076,163 @@ class Mission
 			id=512;
 			atlOffset=8.3737936;
 		};
-		class Item27
+		class Item24
 		{
 			dataType="Trigger";
-			position[]={10453.415,15.352679,4176.1733};
+			position[]={10878.999,35.657036,4151.7988};
 			class Attributes
 			{
 				name="AreaOfOperations";
 				condition="call{this}";
-				sizeA=750;
-				sizeB=750;
+				sizeA=1100;
+				sizeB=800;
 				activationType="EAST D";
 				isRectangle=1;
 			};
 			id=533;
 			type="EmptyDetectorAreaR250";
 		};
+		class Item25
+		{
+			dataType="Layer";
+			name="Air Defence";
+			class Entities
+			{
+				items=6;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9778.0586,48.614887,3862.3423};
+						angles[]={6.1686583,0,0};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=384;
+					type="RHS_ZU23_VMF";
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9464.627,60.528706,3997.5222};
+						angles[]={0.075854406,0,6.2599902};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=385;
+					type="RHS_ZU23_VMF";
+					atlOffset=-0.020053864;
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9964.458,8.5836372,4253.9336};
+						angles[]={0.0095932409,3.7664828,0};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=383;
+					type="rhs_gaz66_zu23_vmf";
+					atlOffset=-6.4373016e-005;
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9689.6025,46.090244,3382.2017};
+						angles[]={0.030390549,0,6.2679858};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+						receiveRemoteTargets=1;
+					};
+					id=538;
+					type="rhs_zsu234_aa";
+					atlOffset=-0.0013160706;
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={9485.748,36.752693,4185.3423};
+						angles[]={-0,0.84487349,0.004784164};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+						receiveRemoteTargets=1;
+					};
+					id=539;
+					type="rhs_zsu234_aa";
+					atlOffset=-2.2888184e-005;
+				};
+				class Item5
+				{
+					dataType="Logic";
+					class PositionInfo
+					{
+						position[]={9603.6826,36.842022,4108.249};
+						angles[]={0.0039967569,0,6.2384152};
+					};
+					name="dzn_AAA_Logic";
+					id=540;
+					type="Logic";
+				};
+			};
+			id=534;
+			atlOffset=-0.73231888;
+		};
+		class Item26
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9606.4473,40.823593,3444.4277};
+				angles[]={0.043179445,5.882545,6.2591867};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="AAA_Radar";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				reportOwnPosition=1;
+				aiRadarUsage=1;
+			};
+			id=535;
+			type="O_Radar_System_02_F";
+			atlOffset=-0.017211914;
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=61;
+			nextID=68;
 		};
 		class Links
 		{
-			items=61;
+			items=68;
 			class Item0
 			{
 				linkID=0;
@@ -8740,6 +8838,76 @@ class Mission
 				linkID=60;
 				item0=356;
 				item1=487;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item61
+			{
+				linkID=61;
+				item0=425;
+				item1=539;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item62
+			{
+				linkID=62;
+				item0=425;
+				item1=538;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item63
+			{
+				linkID=63;
+				item0=383;
+				item1=540;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item64
+			{
+				linkID=64;
+				item0=538;
+				item1=540;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item65
+			{
+				linkID=65;
+				item0=539;
+				item1=540;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item66
+			{
+				linkID=66;
+				item0=384;
+				item1=540;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item67
+			{
+				linkID=67;
+				item0=385;
+				item1=540;
 				class CustomData
 				{
 					type="Sync";

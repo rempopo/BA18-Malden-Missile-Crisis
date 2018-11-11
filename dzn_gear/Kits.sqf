@@ -178,7 +178,7 @@ cargo_kit_o_vehicle = [
 	BLUFOR Specfor
 */
 
-#define B_ASSIGNED_ITEMS_L		"ItemMap","ItemCompass","ItemWatch","ItemRadio", NVG_NIGHT_ITEM, "rhsusf_bino_lrf_Vector21"
+#define B_ASSIGNED_ITEMS_L		"ItemMap","ItemCompass","ItemWatch","ItemRadio", NVG_NIGHT_ITEM, "Laserdesignator"
 #define B_UNIFORM_ITEMS		["FirstAidKit",3],["rhs_mag_an_m8hc",1]
 
 #define B_HEADGEAR	["rhsusf_opscore_ut_pelt","rhsusf_opscore_paint_pelt","rhsusf_opscore_paint_pelt_nsw","rhsusf_opscore_ut_pelt_nsw"]
@@ -244,6 +244,6 @@ kit_ussf_r = [
 cargo_kit_b_boat = [
 	[["rhs_weap_m72a7",1]],
 	[["rhs_mag_30Rnd_556x45_M855A1_Stanag",10],["rhs_mag_30Rnd_556x45_M855A1_PMAG_Tan_Tracer_Red",4],["rhs_mag_an_m8hc",4],["rhs_mag_m67",1],["rhs_m72a7_mag",1],["rhsusf_m112_mag",4],["SLAMDirectionalMine_Wire_Mag",2]],
-	[["FirstAidKit",2]],
+	[["FirstAidKit",2], ["MineDetector", 2]],
 	[]
 ];
