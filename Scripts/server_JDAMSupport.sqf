@@ -7,6 +7,7 @@ dzn_AAA_Radar = AAA_Radar;
 
 // --- Settings
 dzn_AAA_InterceptChance = 25;
+dzn_AAA_InterceptChanceBonusPerBomb = 5;
 dzn_JDAM_AimingError = 5;
 dzn_JDAM_StrikeTimeout = 30;
 
@@ -37,11 +38,20 @@ dzn_fnc_server_requestStrike = {
 	// --- Intercept JDAM if radra is working
 	if (!alive dzn_AAA_Radar) exitWith {};
 	{
-		[_x, _bomb] spawn dzn_fnc_server_interceptByAAA;
+		[_x, _bomb, 6.5] spawn dzn_fnc_server_interceptByAAA;
 	} forEach dzn_AAAs;
 	
+	[6.5] spawn dzn_fnc_server_makeAllAIDown;
+	
 	// --- Intercept sequence
-	if ((random 100) > dzn_AAA_InterceptChance) exitWith { /* Failed to intercept */ };	
+	dzn_AAA_InterceptChance = dzn_AAA_InterceptChance + dzn_AAA_InterceptChanceBonusPerBomb;
+	if ((random 100) > dzn_AAA_InterceptChance) exitWith { 
+		/* Failed to intercept */ 
+		
+		waitUntil { ((getPosATL _bomb) # 2) < 15 };
+		private _newPos = (getPosATL _bomb);
+		[_newPos, "Bo_Mk82_MI08", 0, false, _newPos # 2, -100] call dzn_fnc_SpawnShell
+	};	
 	waitUntil { ((getPosATL _bomb) # 2) < (100 + random (200)) };	
 	createVehicle ["HelicopterExploBig", getPosATL _bomb, [], 0, "NONE"];	
 	createVehicle ["HelicopterExploBig", getPosATL _bomb, [], 0, "NONE"];
@@ -49,7 +59,7 @@ dzn_fnc_server_requestStrike = {
 };
 
 dzn_fnc_server_interceptByAAA = {
-	params ["_gun","_tgt"];
+	params ["_gun","_tgt", "_sleepTimeout"];
 	
 	private _dist = _gun distance2d _tgt;
 	if (_dist > 2000) exitWith { /* Target is too far, don't shoot */ };
@@ -70,7 +80,7 @@ dzn_fnc_server_interceptByAAA = {
 	_g doWatch _tgt;
 	_g doTarget _tgt;
 	
-	sleep 6.5;
+	sleep _sleepTimeout;
 	_g doWatch (_tgt modelToWorldVisual _leadOffset);
 	
 	for "_i" from 0 to 75 do {
@@ -90,3 +100,33 @@ dzn_fnc_server_interceptByAAA = {
 	
 	_gun setVehicleAmmo 1;
 };
+
+dzn_fnc_server_makeAllAIDown = {
+	params ["_sleepTimeout"];
+	
+	private _units = allUnits select { side _x == east && { !isPlayer _x } };
+	sleep _sleepTimeout;
+	
+	{
+		[_x, "DOWN"] remoteExec ["setUnitPos", _x];
+	} forEach _units;
+	
+	sleep 15;
+	
+	{
+		[_x, "AUTO"] remoteExec ["setUnitPos", _x];
+	} forEach _units;
+};
+
+["itemAdd", ["dzn_JDAM_ReloadLoop", { 
+	if (dzn_JDAM_AvailableCount < 1 && isNil "JDAM_RealodTriggered") then { 
+		JDAM_RealodTriggered = true;
+		[] spawn {
+			sleep 60 * 30;
+			dzn_JDAM_AvailableCount = 8;
+			publicVariable "dzn_JDAM_AvailableCount";
+			
+			JDAM_RealodTriggered = nil;
+		};
+	};
+}, 60]] call BIS_fnc_loop;

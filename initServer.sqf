@@ -78,6 +78,8 @@ deleteVehicle StaticWeaponsLogic;
 };
 
 
+
+
 /*
  *	JDAM and AAA 
  */
@@ -88,3 +90,9 @@ deleteVehicle StaticWeaponsLogic;
  *	BLUFOR Detection
  */
 #include "Scripts\server_BluforDetection.sqf"
+
+/*
+ *	Add some units NVGs
+ */
+
+#include "Scripts\server_NVGsToGroupLeaders.sqf"
