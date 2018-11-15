@@ -5,6 +5,9 @@
  
 dzn_fnc_B_showStrikeCallMenu = {
 	
+	(player getVariable ["#rev",0]) params ["_reviveState"];
+	
+	if (!alive player || !(_reviveState < 2)) exitWith {};
 	if !(call TFAR_fnc_haveLRRadio ) exitWith { hint "Для запроса авиаудара у вас должна быть ДВ рация!"; };
 	if (isNil "dzn_JDAM_AvailableCount" || { dzn_JDAM_AvailableCount < 1 }) exitWith { hint "Не осталось JDAM для выполнения удара!"; };
 	if (diag_tickTime < dzn_JDAM_RequestTimeout) exitWith { hint "Запрос выполняется, ожидайте"; };

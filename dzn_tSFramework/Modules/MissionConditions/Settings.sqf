@@ -50,10 +50,11 @@ tSF_MissionCondition_DefaultCheckTimer 			= 15;
 // Код условия может быть строкой или кодом в { }
 
 #define ALIVE_TGTS 		({alive _x} count [TGT_1, TGT_2, TGT_3])
-#define BLUFOR_ESCAPED	[EscapeArea, "side _x == west", "> 0"] call dzn_fnc_ccPlayers
-#define BLUFOR_DEAD		{ alive _x && side _x == west } count (call BIS_fnc_listPlayers) == 0
+#define BLUFOR_ESCAPED	[EscapeArea, "alive _x && side _x == west", "> 0"] call dzn_fnc_ccPlayers || [AreaOfOperations, "alive _x && side _x == west", "< 1"] call dzn_fnc_ccPlayers 
+#define BLUFOR_DEAD		{ (_x getVariable ["#rev",0]) params ["_state"]; side _x == west && { (alive _x || _state < 2) } } count (call BIS_fnc_listPlayers) == 0
 
-if (isNil "dzn_DEBUG") then {
+
+if (!dzn_DEBUG) then {
 
 MissionCondition1 = [ "WIN__B_MAJOR_VICTORY", 		{ ALIVE_TGTS == 0 && { BLUFOR_ESCAPED } }, "All objectives done and escaped" ];
 MissionCondition2 = [ "WIN_WIPED__B_MAJOR_VICTORY", 	{ ALIVE_TGTS == 0 && { BLUFOR_DEAD } }, "All objectives done, but BLUFOR eliminated" ];

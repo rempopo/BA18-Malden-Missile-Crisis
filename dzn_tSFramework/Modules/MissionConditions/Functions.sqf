@@ -59,3 +59,4 @@ dzn_fnc_missionConditions_startClienListener = {
 fnc_isAllDead = {
 	{alive _x} count (call BIS_fnc_listPlayers) < 1
 };
+

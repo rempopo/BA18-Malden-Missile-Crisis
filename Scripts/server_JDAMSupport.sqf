@@ -14,7 +14,7 @@ dzn_JDAM_StrikeTimeout = 30;
 dzn_JDAM_AvailableCount = 8;
 dzn_JDAM_RequestTimeout = 0;
 dzn_JDAM_RequestTimeoutSetting = dzn_JDAM_StrikeTimeout + 10;
-publicVariable "dzn_JDAM_Available";
+publicVariable "dzn_JDAM_AvailableCount";
 publicVariable "dzn_JDAM_RequestTimeout";
 publicVariable "dzn_JDAM_RequestTimeoutSetting";
 publicVariable "dzn_JDAM_StrikeTimeout";
@@ -105,18 +105,42 @@ dzn_fnc_server_makeAllAIDown = {
 	params ["_sleepTimeout"];
 	
 	private _units = allUnits select { side _x == east && { !isPlayer _x } };
+	private _unitsByOwner = [];
+	{
+		private _u = _x;
+		private _owner = owner _x;
+		
+		if ((_unitsByOwner select { (_x # 0) == _owner }) isEqualTo []) then {
+			_unitsByOwner pushBack [_owner, [_u]];
+		} else {
+			{
+				_x params ["_own", "_unitlist"];
+				if (_own == _owner) then {
+					_unitlist pushBack _u;
+				};
+			} forEach _unitsByOwner;
+		};
+	} forEach _units;
+	
+	
 	sleep _sleepTimeout;
-	
 	{
-		[_x, "DOWN"] remoteExec ["setUnitPos", _x];
-	} forEach _units;
+		[(_x # 1)] remoteExec ["dzn_fnc_keepUnitsPos", (_x # 0)];
+	} forEach _unitsByOwner;
 	
-	sleep 15;
-	
-	{
-		[_x, "AUTO"] remoteExec ["setUnitPos", _x];
-	} forEach _units;
 };
+
+dzn_fnc_keepUnitsPos = {
+	params ["_units", ["_pos", "DOWN"], ["_time", 15]];
+	
+	for "_i" from 0 to (2*_time) do {
+		{ _x setUnitPos _pos; } forEach _units;
+		sleep 0.5;
+	};
+	
+	{ _x setUnitPos "AUTO"; } forEach _units;
+};
+publicVariable "dzn_fnc_keepUnitsPos";
 
 ["itemAdd", ["dzn_JDAM_ReloadLoop", { 
 	if (dzn_JDAM_AvailableCount < 1 && isNil "JDAM_RealodTriggered") then { 

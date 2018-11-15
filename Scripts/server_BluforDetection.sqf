@@ -25,29 +25,33 @@ dzn_fnc_drawDetectionMarker = {
 	] call dzn_fnc_createMarkerIcon;
 	_mrk setMarkerAlpha 0;
 	
+	private _time = (daytime *60 *60);
+	// [ @name, @detectionDaytime, @daytimeToMakeOld, @diag_tickTime_to_delete ]
 	dzn_BLUFOR_DetectionMarkers pushBack [
 		_mrk
-		, diag_tickTime + dzn_BLUFOR_DetectionMakeOldTimeout
+		, _time
+		, _time + dzn_BLUFOR_DetectionMakeOldTimeout
 		, diag_tickTime + dzn_BLUFOR_DetectionDeleteTimeout
-		, diag_tickTime
 	];
 };
 
 dzn_fnc_publicDetectionMarkers = {
+	if (!isServer) exitWith {};
+	[] remoteExec ["dzn_fnc_publicDetectionMarkersClient", east];
+};
+
+dzn_fnc_publicDetectionMarkersClient = {
 	if (hasInterface && {side player == east}) then {
 		{ 
-			_x params ["_mrk", "_oldTimeout", "", "_foundTime"];
+			_x params ["_mrk", "_foundTime", "_oldTimeout", ""];
 			
-			_mrk setMarkerAlphaLocal (if (diag_tickTime >= _oldTimeout) then { 0.5 } else { 1 });
-			_mrk setMarkerTextLocal format ["%1s ago", round(diag_tickTime - _foundTime)];
+			private _time = (daytime *60 *60);
+			_mrk setMarkerAlphaLocal (if (_time >= _oldTimeout) then { 0.5 } else { 1 });
+			_mrk setMarkerTextLocal format ["%1s ago", round(_time - _foundTime)];
 		} forEach dzn_BLUFOR_DetectionMarkers;
 	};
-
-	if (isServer) exitWith {
-		[] remoteExec ["dzn_fnc_publicDetectionMarkers", -2];
-	};
 };
-publicVariable "dzn_fnc_publicDetectionMarkers";
+publicVariable "dzn_fnc_publicDetectionMarkersClient";
 
 ["itemAdd", [
 	"BLUFOR_Detection_CreateMarkerLoop"
@@ -79,8 +83,9 @@ publicVariable "dzn_fnc_publicDetectionMarkers";
 		// --- Clear outdated markers, draw and update text/opacity of existing markers on clients
 		private _toRemove = [];
 		{ 
-			if (diag_tickTime >= _x # 2) then { 
-				deleteMarker (_x # 0);
+			_x params ["_mrk", "_foundTime", "_oldTimeout", "_deleteDiagTime"];
+			if (diag_tickTime >= _deleteDiagTime) then { 
+				deleteMarker _mrk;
 				_toRemove pushBack _x; 
 			}; 
 		} forEach dzn_BLUFOR_DetectionMarkers;
